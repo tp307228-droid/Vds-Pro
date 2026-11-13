@@ -114,21 +114,22 @@ jobs:
           chmod +x /usr/local/bin/insert_dylib
           echo "✅ insert_dylib ready: $(insert_dylib --help 2>&1 | head -1)"
 
-      # ── 5. Extract base IPA ────────────────────────────
+      # ── 5. Download & Extract base IPA ────────────────
+      - name: 📦 Download base IPA from Release
+        run: |
+          set -e
+          echo "⬇️ Downloading base IPA from Releases..."
+          curl -fL \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://github.com/tp307228-droid/Vds-Pro/releases/download/base-ipa/VideoStar_base.ipa" \
+            -o base.ipa
+          echo "✅ Downloaded: $(du -sh base.ipa | cut -f1)"
+
       - name: 📦 Extract base IPA
         run: |
           set -e
-          # Find the base IPA in repo
-          BASE_IPA=$(find . -name "*.ipa" -not -name "*Pro*" -not -name "*Mod*" | head -1)
-          if [ -z "$BASE_IPA" ]; then
-            echo "❌ Base IPA not found in repo!"
-            echo "Please commit VideoStar_base.ipa to this repo"
-            exit 1
-          fi
-          echo "📦 Base IPA: $BASE_IPA ($(du -sh "$BASE_IPA" | cut -f1))"
-
           mkdir -p extracted
-          unzip -q "$BASE_IPA" -d extracted
+          unzip -q base.ipa -d extracted
           echo "✅ Extracted"
 
           # Find .app bundle

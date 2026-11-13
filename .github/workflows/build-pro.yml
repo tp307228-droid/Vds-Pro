@@ -45,7 +45,7 @@ jobs:
           set -e
           export THEOS=$HOME/theos
           export PATH="$THEOS/bin:$PATH"
-          make package FINALPACKAGE=1 DEBUG=0 -j$(sysctl -n hw.ncpu) 2>&1
+          make FINALPACKAGE=1 DEBUG=0 -j$(sysctl -n hw.ncpu) 2>&1
 
       - name: Find dylib
         id: dylib
@@ -55,6 +55,8 @@ jobs:
           [ -z "$D" ] && { echo "dylib not found"; find . -name "*.dylib" 2>/dev/null; exit 1; }
           echo "path=$D" >> $GITHUB_OUTPUT
           echo "Found: $D"
+          echo "Checking dynamic libraries dependencies:"
+          otool -L "$D"
 
       - name: Build insert_dylib
         run: |

@@ -23,6 +23,9 @@ jobs:
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
           echo "PATH=$HOME/theos/bin:$PATH" >> $GITHUB_ENV
 
+      - name: Install ldid
+        run: brew install ldid 2>/dev/null || true
+
       - name: Setup iOS SDK
         run: |
           set -e

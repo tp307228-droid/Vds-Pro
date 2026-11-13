@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-pro:
-    runs-on: macos-14
+    runs-on: macos-13
     permissions:
       contents: write
 

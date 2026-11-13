@@ -9,7 +9,7 @@
 // ─────────────────────────────────────────────────────────
 // Filter: only run inside VideoStar
 // ─────────────────────────────────────────────────────────
-%filter(applications, com.frontierdesign.VideoStar);
+// Bundle filter set in dylib.plist — no %filter needed here for direct injection
 
 // ─────────────────────────────────────────────────────────
 // MARK: - SKPaymentQueue (Block IAP dialogs, spoof purchased)

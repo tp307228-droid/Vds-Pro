@@ -1,0 +1,9 @@
+Package: com.fallvds.vdspro
+Name: VdsPro Unlock
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Description: VideoStar Pro Unlock — FallVds Team
+Maintainer: FallVds Team
+Author: FallVds Team
+Section: Tweaks
+Depends: mobilesubstrate, firmware (>= 14.0)
